@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* debug */
+/* * {
+  box-sizing: border-box;
+  background-color: rgb(0 100 0 / 0.05) !important;
+} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-wrap: pretty;
+  font-family: "Fredoka One", sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* global styles */
+body {
+  /* section {
+    scroll-margin-top: 130px;
+  }
+  h1,
+  h2,
+  h6 {
+    @apply text-Dark;
+  }
+  img {
+    @apply rounded-lg;
+  }
+  p {
+    @apply text-Gray lg:text-[20px] text-base leading-9;
+  } */
+  input,
+  button,
+  svg,
+  textarea,
+  a {
+    transition: all 0.3s;
+    outline: none;
+  }
+  img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+  /* global classes */
+  .notification {
+    @apply absolute -top-2 -right-2 bg-Red text-white text-xs rounded-full py-1 px-2;
+  }
+  .navlinks-menu {
+    @apply flex items-center space-x-6 font-semibold text-lg uppercase;
+    a {
+      @apply text-Brown border-b-2 border-transparent hover:text-Orange;
+      &.active {
+        @apply text-Orange border-Orange;
+      }
+    }
+  }
+}
+/* home page */
+#explore-more {
+  @apply *:text-5xl *:uppercase;
+  .row {
+    a {
+      @apply p-20 flex flex-col gap-2 items-center justify-center text-light-brown hover:brightness-75;
+      &.bg-light-brown {
+        @apply !text-Brown;
+      }
+    }
+  }
+}
+/* end of hpome page */
+
+/* menu page */
+.category-btn {
+  @apply border-b-2 border-transparent;
+  &.active {
+    @apply border-white;
+  }
+}
+#menu-container {
+  @apply grid grid-cols-4 gap-x-10 gap-y-20 layout-container;
+  .item-card {
+    @apply flex flex-col gap-10 items-center font-bold;
+    img {
+      @apply w-full h-96 object-cover rounded-md;
+    }
+    h2 {
+      @apply text-Red;
+    }
+    #action-btns {
+      @apply flex gap-4 w-full *:p-2 *:rounded-full [&_button:last-child:hover]:bg-Brown;
+    }
+  }
+}
+
+/* sigin-in & sigin-up  */
+#sigin-signup {
+  @apply flex relative max-w-3xl mx-auto border border-black items-center overflow-hidden justify-center h-dvh;
+  .title {
+    @apply text-3xl text-white text-center mb-10;
+  }
+  .link {
+    @apply text-white underline mt-2;
+  }
+  .password-input-wrapper {
+    @apply relative flex;
+  }
+  .toggle-password {
+    @apply absolute -top-1 right-0 bg-[#23272e] cursor-pointer z-50;
+  }
+  .validate {
+    @apply text-red-600;
+  }
+}
+#toast {
+  @apply absolute top-0 left-1/2 bg-gray-600 p-4 -translate-y-full -translate-x-1/2 rounded-md transition-all duration-500;
+}

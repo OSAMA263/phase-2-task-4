@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>borgir</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header
+      class="fixed z-50 bg-white w-full backdrop-blur-2xl top-0 py-4 shadow-md"
+    >
+      <nav class="flex items-center justify-between layout-container">
+        <a href="/">
+          <img src="./imgs/logo.png" alt="Burger King" class="w-12" />
+        </a>
+        <!-- navigation links  -->
+        <div class="flex items-center space-x-6">
+          <ul class="navlinks-menu">
+            <li>
+              <a href="./pages/menu.html">menu</a>
+            </li>
+            <li><a href="./pages/profile.html">my profile</a></li>
+            <li><a href="./pages/about.html">about us</a></li>
+            <li><a href="./pages/contact.html">get in touch</a></li>
+          </ul>
+        </div>
+
+        <!-- Right Section (Language & Cart) -->
+        <div class="flex items-center space-x-6">
+          <span class="font-bold text-brown-800">عربي</span>
+          <div class="relative bg-white shadow-xl p-4 rounded-full">
+            <i class="fa-solid fa-bag-shopping text-Orange text-2xl"></i>
+            <span class="notification">4</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- hero section -->
+    <section class="h-dvh bg-light-brown items-center grid grid-cols-2">
+      <h1 class="text-8xl font-bold text-Brown uppercase">
+        order your favorite meal now!
+      </h1>
+      <img src="./imgs/hero1.png" class="h-[80%] z-10 w-full" alt="hero" />
+    </section>
+
+    <!-- explore more -->
+    <section id="explore-more">
+      <div class="row grid grid-cols-2">
+        <a href="" class="bg-Orange">order food now!</a>
+        <a href="" class="bg-light-brown">download app <img src="./imgs/phone.png" alt=""></a>
+      </div>
+
+      <div class="row grid grid-cols-4">
+        <a target="_blank" href="https://www.facebook.com/" class="bg-Brown">
+          <i class="fa-brands fa-facebook"></i>
+          <h6>facebook</h6>
+        </a>
+        <a
+          target="_blank"
+          href="https://www.instagram.com/"
+          class="bg-light-brown"
+        >
+          <i class="fa-brands fa-instagram"></i>
+          <h6>instagram</h6>
+        </a>
+        <a target="_blank" href="https://www.tiktok.com/" class="bg-[#1a8738]">
+          <i class="fa-brands fa-tiktok"></i>
+          <h6>tiktok</h6>
+        </a>
+        <a target="_blank" href="https://www.reddit.com/" class="bg-Orange">
+          <i class="fa-brands fa-reddit-alien"></i>
+          <h6>reddit</h6>
+        </a>
+      </div>
+
+      <div class="row grid grid-cols-2">
+        <a href="" class="bg-Red">
+          <i class="fa-solid fa-heart"></i>
+          <h6>favorite</h6>
+        </a>
+        <a href="" class="bg-light-brown">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <h6>Cart</h6>
+        </a>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="bg-white py-4">
+      <div class="layout-container flex justify-between items-center">
+        <div class="flex gap-20 items-center text-Brown">
+          <a href="/">
+            <img src="./imgs/logo.png" alt="Burger King" class="w-12" />
+          </a>
+          <a href="">OUR MENU</a>
+        </div>
+
+        <!-- social media links -->
+        <div
+          class="flex gap-6 items-center [&_a]:text-3xl [&_a:hover]:text-Brown [&_a]:text-Orange"
+        >
+          <h1 class="font-bold text-Brown">FOLLOW US</h1>
+          <a target="_blank" href="https://www.facebook.com/">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a target="_blank" href="https://www.instagram.com/">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a target="_blank" href="https://www.tiktok.com/">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a target="_blank" href="https://www.reddit.com/">
+            <i class="fa-brands fa-reddit-alien"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="./app.js"></script>
+  </body>
+</html>

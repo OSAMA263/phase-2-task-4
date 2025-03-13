@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>borgir - about</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="pt-24 pb-16 px-6 max-w-5xl mx-auto text-center">
+      <h1 class="text-5xl font-bold uppercase text-Brown">Contact Us</h1>
+      <p class="mt-4 text-lg text-gray-700">
+        Have a question? Reach out to us!
+      </p>
+
+      <!-- Contact Form -->
+      <form
+        class="mt-8 bg-white shadow-lg p-6 rounded-lg space-y-4 max-w-lg mx-auto"
+      >
+        <input
+          type="text"
+          required
+          placeholder="Your Name"
+          class="w-full p-3 border border-gray-300 rounded-lg"
+        />
+        <input
+          type="email"
+          required
+          placeholder="Your Email"
+          class="w-full p-3 border border-gray-300 rounded-lg"
+        />
+        <textarea
+          required
+          placeholder="Your Message"
+          rows="4"
+          class="resize-none w-full p-3 border border-gray-300 rounded-lg"
+        ></textarea>
+        <button
+          type="submit"
+          class="bg-Orange text-white py-3 px-6 rounded-lg w-full font-bold hover:bg-red-600"
+        >
+          Send Message
+        </button>
+      </form>
+    </section>
+
+    <!-- Location Section -->
+    <section class="bg-Brown text-white py-12">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-3xl font-bold">Our Location</h2>
+        <p class="mt-2 text-lg">Visit us at our nearest branch.</p>
+        <div class="mt-6">
+          <iframe
+            class="w-full h-64 rounded-lg shadow-lg"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.123456789012!2d31.23571121511743!3d30.044419581887985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145846c25e61f8c3%3A0x25f40d60b9e88e0!2sBurger%20King!5e0!3m2!1sen!2seg!4v1700000000000"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <script src="../app.js"></script>
+  </body>
+</html>

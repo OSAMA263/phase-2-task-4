@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>borgir - about</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header
+      class="sticky z-50 bg-white w-full backdrop-blur-2xl top-0 py-4 shadow-md"
+    >
+      <nav class="flex items-center justify-between layout-container">
+        <a href="/">
+          <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
+        </a>
+        <!-- navigation links  -->
+        <div class="flex items-center space-x-6">
+          <ul class="navlinks-menu">
+            <li>
+              <a href="../pages/menu.html">menu</a>
+            </li>
+            <li><a href="../pages/profile.html">my profile</a></li>
+            <li><a href="../pages/about.html">about us</a></li>
+            <li><a href="../pages/contact.html">get in touch</a></li>
+          </ul>
+        </div>
+
+        <!-- Right Section (Language & Cart) -->
+        <div class="flex items-center space-x-6">
+          <span class="font-bold text-brown-800">عربي</span>
+          <div class="relative bg-white shadow-xl p-4 rounded-full">
+            <i class="fa-solid fa-bag-shopping text-Orange text-2xl"></i>
+            <span class="notification">4</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="pt-10 pb-16 px-6 max-w-5xl mx-auto text-center">
+      <h1 class="text-5xl font-bold uppercase text-Brown">About Burger King</h1>
+
+      <img
+        src="../imgs/about.webp"
+        class="mt-8 rounded-lg shadow-lgl max-w-2xl mx-auto"
+      />
+      <p class="mt-4 text-lg text-gray-700">
+        Since 1954, Burger King has been serving high-quality, flame-grilled
+        burgers. Our mission is to provide delicious food with the best
+        ingredients while ensuring a great customer experience.
+      </p>
+    </section>
+
+    <!-- Values Section -->
+    <section class="bg-Brown text-white py-12">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-3xl font-bold">Our Values</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div class="p-6 bg-Orange rounded-lg">
+            <h3 class="text-2xl font-bold">Quality</h3>
+            <p class="mt-2">
+              We use only the best ingredients for our burgers, fries, and
+              drinks.
+            </p>
+          </div>
+          <div class="p-6 bg-light-brown text-Brown rounded-lg">
+            <h3 class="text-2xl font-bold">Customer First</h3>
+            <p class="mt-2">
+              We prioritize our customers and their satisfaction in every meal.
+            </p>
+          </div>
+          <div class="p-6 bg-Red rounded-lg">
+            <h3 class="text-2xl font-bold">Innovation</h3>
+            <p class="mt-2">
+              Always bringing new flavors and experiences to our menu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="../app.js"></script>
+  </body>
+</html>

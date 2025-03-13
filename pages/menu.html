@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>menu</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header
+      class="sticky z-50 bg-white w-full backdrop-blur-2xl top-0 py-4 shadow-md"
+    >
+      <nav class="flex items-center justify-between layout-container">
+        <a href="/">
+          <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
+        </a>
+        <!-- navigation links  -->
+        <div class="flex items-center space-x-6">
+          <ul class="navlinks-menu">
+            <li>
+              <a class="nav-link" href="../pages/menu.html">menu</a>
+            </li>
+            <li>
+              <a class="nav-link" href="../pages/profile.html">my profile</a>
+            </li>
+            <li><a class="nav-link" href="../pages/about.html">about us</a></li>
+            <li>
+              <a class="nav-link" href="../pages/contact.html">get in touch</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Section (Language & Cart) -->
+        <div class="flex items-center space-x-6">
+          <span class="font-bold text-brown-800">عربي</span>
+          <div class="relative bg-white shadow-xl p-4 rounded-full">
+            <i class="fa-solid fa-bag-shopping text-Orange text-2xl"></i>
+            <span class="notification">4</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- categories -->
+    <div class="sticky top-[90px] space-y-4 py-4 bg-white">
+      <!-- catagories filtering -->
+      <div class="bg-Orange py-2">
+        <div
+          class="layout-container flex justify-between items-center text-white"
+        >
+          <!-- categories -->
+          <button class="category-btn active" value="Promotions & Bundles">
+            Promotions & Bundles
+          </button>
+          <button class="category-btn" value="Salads & Side Items">
+            Salads & Side Items
+          </button>
+          <button class="category-btn" value="Chicken Sandwiches">
+            Chicken Sandwiches
+          </button>
+          <button class="category-btn" value="Beef Sandwiches">
+            Beef Sandwiches
+          </button>
+          <button class="category-btn" value="Beverages">Beverages</button>
+          <button class="category-btn" value="Beef Meals">Beef Meals</button>
+          <button class="category-btn" value="Chicken Meals">
+            Chicken Meals
+          </button>
+          <button class="category-btn" value="King Jr Meals">
+            King Jr Meals
+          </button>
+          <button class="category-btn" value="Dessert">Dessert</button>
+        </div>
+      </div>
+
+      <!-- filter with title -->
+      <div class="layout-container">
+        <input
+          type="text"
+          id="search-inp"
+          placeholder="Search for anything here"
+          class="rounded-full border-Brown border w-full text-center p-1 text-Brown"
+        />
+      </div>
+    </div>
+
+    <!-- menu cards grid -->
+    <div class="bg-light-brown py-4 mt-2 min-h-dvh">
+      <div id="menu-container">
+        <div class="h-dvh col-span-4"></div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-white py-4">
+      <div class="layout-container flex justify-between items-center">
+        <div class="flex gap-20 items-center text-Brown">
+          <a href="/">
+            <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
+          </a>
+          <a href="">OUR MENU</a>
+        </div>
+
+        <!-- social media links -->
+        <div
+          class="flex gap-6 items-center [&_a]:text-3xl [&_a:hover]:text-Brown [&_a]:text-Orange"
+        >
+          <h1 class="font-bold text-Brown">FOLLOW US</h1>
+          <a target="_blank" href="https://www.facebook.com/">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a target="_blank" href="https://www.instagram.com/">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a target="_blank" href="https://www.tiktok.com/">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a target="_blank" href="https://www.reddit.com/">
+            <i class="fa-brands fa-reddit-alien"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
