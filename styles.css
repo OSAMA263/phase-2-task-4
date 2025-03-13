@@ -18,20 +18,6 @@ html {
 }
 /* global styles */
 body {
-  /* section {
-    scroll-margin-top: 130px;
-  }
-  h1,
-  h2,
-  h6 {
-    @apply text-Dark;
-  }
-  img {
-    @apply rounded-lg;
-  }
-  p {
-    @apply text-Gray lg:text-[20px] text-base leading-9;
-  } */
   input,
   button,
   svg,
@@ -98,23 +84,36 @@ body {
 
 /* sigin-in & sigin-up  */
 #sigin-signup {
-  @apply flex relative max-w-3xl mx-auto border border-black items-center overflow-hidden justify-center h-dvh;
+  @apply flex relative max-w-3xl mx-auto items-center overflow-hidden justify-center h-dvh;
+  #login,
+  #rejister {
+    @apply bg-[#ffe5d4] py-44 px-20 rounded-md;
+  }
   .title {
-    @apply text-3xl text-white text-center mb-10;
+    @apply text-3xl text-Brown text-center mb-10;
   }
   .link {
-    @apply text-white underline mt-2;
+    @apply text-Brown hover:text-Orange underline mt-2;
   }
   .password-input-wrapper {
-    @apply relative flex;
+    @apply relative flex items-center;
   }
   .toggle-password {
-    @apply absolute -top-1 right-0 bg-[#23272e] cursor-pointer z-50;
+    @apply absolute right-4 cursor-pointer z-50;
   }
   .validate {
     @apply text-red-600;
   }
+  form {
+    @apply flex flex-col w-full space-y-6;
+    input {
+      @apply border border-black w-full rounded-md p-2;
+    }
+  }
+  .main-btn {
+    @apply w-fit mx-auto p-2 rounded-md bg-Brown hover:bg-white text-white hover:text-Brown;
+  }
 }
 #toast {
-  @apply absolute top-0 left-1/2 bg-gray-600 p-4 -translate-y-full -translate-x-1/2 rounded-md transition-all duration-500;
+  @apply absolute bottom-0 right-0 bg-Brown !text-white p-4 translate-y-full -translate-x-1/2 rounded-md transition-all duration-500;
 }

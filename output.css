@@ -935,20 +935,6 @@ html {
 /* global styles */
 
 body {
-  /* section {
-    scroll-margin-top: 130px;
-  }
-  h1,
-  h2,
-  h6 {
-    @apply text-Dark;
-  }
-  img {
-    @apply rounded-lg;
-  }
-  p {
-    @apply text-Gray lg:text-[20px] text-base leading-9;
-  } */
   input,
   button,
   svg,
@@ -1199,9 +1185,25 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+  #login,
+  #rejister {
+    border-radius: 0.375rem;
+  }
+  #login,
+  #rejister {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 229 212 / var(--tw-bg-opacity, 1));
+  }
+  #login,
+  #rejister {
+    padding-top: 11rem;
+    padding-bottom: 11rem;
+  }
+  #login,
+  #rejister {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
   .title {
     margin-bottom: 2.5rem;
   }
@@ -1214,17 +1216,21 @@ body {
   }
   .title {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+    color: rgb(80 35 20 / var(--tw-text-opacity, 1));
   }
   .link {
     margin-top: 0.5rem;
   }
   .link {
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+    color: rgb(80 35 20 / var(--tw-text-opacity, 1));
   }
   .link {
     text-decoration-line: underline;
+  }
+  .link:hover {
+    --tw-text-opacity: 1;
+    color: rgb(255 133 51 / var(--tw-text-opacity, 1));
   }
   .password-input-wrapper {
     position: relative;
@@ -1232,14 +1238,14 @@ body {
   .password-input-wrapper {
     display: flex;
   }
+  .password-input-wrapper {
+    align-items: center;
+  }
   .toggle-password {
     position: absolute;
   }
   .toggle-password {
-    top: -0.25rem;
-  }
-  .toggle-password {
-    right: 0px;
+    right: 1rem;
   }
   .toggle-password {
     z-index: 50;
@@ -1247,35 +1253,90 @@ body {
   .toggle-password {
     cursor: pointer;
   }
-  .toggle-password {
-    --tw-bg-opacity: 1;
-    background-color: rgb(35 39 46 / var(--tw-bg-opacity, 1));
-  }
   .validate {
     --tw-text-opacity: 1;
     color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+  }
+  form {
+    display: flex;
+  }
+  form {
+    width: 100%;
+  }
+  form {
+    flex-direction: column;
+  }
+  form > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+  }
+  form {
+    input {
+      width: 100%;
+    }
+    input {
+      border-radius: 0.375rem;
+    }
+    input {
+      border-width: 1px;
+    }
+    input {
+      --tw-border-opacity: 1;
+      border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+    }
+    input {
+      padding: 0.5rem;
+    }
+  }
+  .main-btn {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .main-btn {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .main-btn {
+    border-radius: 0.375rem;
+  }
+  .main-btn {
+    --tw-bg-opacity: 1;
+    background-color: rgb(80 35 20 / var(--tw-bg-opacity, 1));
+  }
+  .main-btn {
+    padding: 0.5rem;
+  }
+  .main-btn {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  }
+  .main-btn:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  }
+  .main-btn:hover {
+    --tw-text-opacity: 1;
+    color: rgb(80 35 20 / var(--tw-text-opacity, 1));
   }
 }
 
 #toast {
   position: absolute;
-  top: 0px;
-  left: 50%;
-  --tw-translate-y: -100%;
+  bottom: 0px;
+  right: 0px;
+  --tw-translate-y: 100%;
   --tw-translate-x: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   border-radius: 0.375rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity, 1));
+  background-color: rgb(80 35 20 / var(--tw-bg-opacity, 1));
   padding: 1rem;
+  --tw-text-opacity: 1 !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
-}
-
-.\*\:\!text-black > * {
-  --tw-text-opacity: 1 !important;
-  color: rgb(0 0 0 / var(--tw-text-opacity, 1)) !important;
 }
 
 .hover\:bg-red-600:hover {
