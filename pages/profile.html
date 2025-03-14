@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>menu</title>
+    <title>profile</title>
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="../output.css" />
     <link
@@ -38,52 +38,44 @@
             </li>
           </ul>
         </div>
-
-        <!-- Right Section (Cart) -->
-        <div class="relative bg-white shadow-xl p-4 rounded-full">
-          <i class="fa-solid fa-bag-shopping text-Orange text-2xl"></i>
-          <span class="notification">4</span>
-        </div>
       </nav>
     </header>
 
     <div class="bg-light-brown min-h-dvh">
       <div class="layout-container py-10 space-y-20">
-        <h1 id="welcoming" class="text-center text-Brown">asda</h1>
-
-        <!-- ordered items -->
+        <h1 id="welcoming" class="text-center text-Brown"></h1>
+        <button onclick="logout()">logout</button>
         <div class="grid grid-cols-2 gap-20 relative">
+          <!-- ordered items -->
           <div class="sticky top-32 h-fit">
-            <h1 class="underline w-fit">Cart Total</h1>
-            <div
-              class="p-8 space-y-3 [&_div]:flex [&_div]:justify-between bg-white"
-            >
-              <div class="mb-5 text-2xl font-bold">
-                <h1>Product</h1>
-                <h1>Total</h1>
-              </div>
-              {/* products names and prices */} {auth.cart.map(({ title, QTY,
-              price }) => (
-              <div class="text-sm" key="{title}">
-                <h1 class="font-medium capitalize text-lightGray">
-                  {title}
-                  <small class="font-bold text-black"> x{QTY}</small>
-                </h1>
-                <h1 class="font-medium">
-                  ${Math.floor(price * QTY).toLocaleString("en")}
+            <div id="user-cart" class="bg-white p-4 rounded-md">
+              <h2 class="text-xl font-bold mb-4">Ordered items</h2>
+              <div id="ordered-cart-items" class="space-y-4"></div>
+              <div class="text-xl font-bold mt-4">
+                <h1>
+                  Grand Total:
+                  <span id="cart-total" class="text-Red">0</span> EGP
                 </h1>
               </div>
-              ))}
-              <div class="text-xl font-bold">
-                <h1>Grand Total</h1>
-                <h1>${TOTAL}</h1>
-              </div>
+              <button
+                onclick="checkout()"
+                class="w-full mt-4 bg-Orange text-white p-2 rounded-md hover:bg-Brown"
+              >
+                Checkout
+              </button>
             </div>
           </div>
 
           <!-- cart -->
-          <div class="border border-black h-[400vh]">
-            <h1 class="text-center">Your Cart</h1>
+          <div>
+            <h1 class="text-center"></h1>
+            <div class="bg-white p-4 rounded-xl shadow-md relative border">
+              <h2 class="text-xl font-bold">Your Cart</h2>
+              <div
+                id="cart-items"
+                class="items-center justify-between p-4 bg-white rounded-lg shadow-md"
+              ></div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,7 +111,7 @@
         </div>
       </div>
     </footer>
-
+    <div id="toast"></div>
     <script src="../app.js"></script>
   </body>
 </html>

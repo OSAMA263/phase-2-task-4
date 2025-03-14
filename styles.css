@@ -117,3 +117,20 @@ body {
 #toast {
   @apply fixed bottom-0 right-0 bg-Brown !text-white p-4 translate-y-full -translate-x-1/2 rounded-md transition-all duration-500;
 }
+
+/* profile page */
+.cart-item {
+  @apply grid grid-cols-3 items-center border-b py-4;
+  img {
+    @apply size-20;
+  }
+  .actions-wrapper {
+    @apply rounded-full w-fit mx-auto flex gap-4;
+    button{
+      @apply rounded-full bg-Orange hover:bg-Brown px-2
+    }
+  }
+  .price-remove-btn {
+    @apply flex flex-col items-end
+  }
+}

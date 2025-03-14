@@ -46,6 +46,12 @@ function itemActions(payload, type, button) {
   button.innerHTML = btnText;
 }
 
+// logout Handler
+function logout() {
+  localStorage.setItem("USER", JSON.stringify({}));
+  window.location.href = "/";
+}
+
 function toastPopup(text) {
   const toast = document.getElementById("toast");
   toast.innerHTML = text;
@@ -58,6 +64,13 @@ function toastPopup(text) {
   }, 1500);
 }
 
+function checkout() {
+  toastPopup("Order placed successfully!");
+  user.cart = [];
+  localStorage.setItem("USER", JSON.stringify(user));
+  renderOrdredItems();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const currUrl = location.pathname.split("/").pop();
   const API = "https://cdn.getsolo.io/apps/production/cQhyxA8MVeI-menu-30.json";
@@ -65,7 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const categoryBtns = document.querySelectorAll(".category-btn");
   const searchInp = document.querySelector("#search-inp");
 
-  // ative nav link highlighting
+  function welcoming() {
+    if (window.location.href.split("/").pop() !== "profile.html") return null;
+    const username = document.querySelector("#welcoming");
+    username.textContent = `welcome, ${user.name}`;
+  }
+  welcoming();
+
+  // active nav link highlighting
   navLinks.forEach((link) => {
     const linkFile = link.getAttribute("href").split("/").pop();
     link.classList.toggle("active", linkFile === currUrl);
@@ -120,9 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // handle search filtering
-  searchInp?.addEventListener("keyup", () => {
-    applyFilters();
-  });
+  searchInp?.addEventListener("keyup", applyFilters);
 
   function applyFilters() {
     if (!selectedCat || !searchInp) return;
@@ -131,7 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const filteredItems = selectedCat.categoryItems.filter((item) =>
       item.name.toLowerCase().includes(searchTitle)
     );
-
     renderSelectedItems(filteredItems);
   }
 
@@ -263,9 +280,108 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-
-  // logout Handler
-  function logout() {
-    localStorage.setItem("USER", JSON.stringify({}));
-  }
+  renderCartItems();
+  renderOrdredItems();
 });
+function renderCartItems() {
+  const cartItemsContainer = document.getElementById("cart-items");
+
+  if (!cartItemsContainer) return;
+
+  if (!user.cart.length) {
+    cartItemsContainer.innerHTML = `<p class="text-center text-gray-500">Your cart is empty.</p>`;
+    return;
+  }
+
+  let total = 0;
+  cartItemsContainer.innerHTML = user.cart
+    .map(({ id, name, qty, price, img }) => {
+      total += price * qty;
+      return `
+        <div class="cart-item">
+          <!-- Item Image and Name -->
+          <div >
+          <h3 class="font-bold text-Brown">${name}</h3>
+          <img src="${img}" alt="${name}" class="w-20 h-20 rounded-lg object-cover">
+          </div>
+
+          <!-- Quantity Controls -->
+          <div class="actions-wrapper">
+            <button onclick="updateCartItem(${id}, 'decrease')">−</button>
+            <span class="text-xl font-medium">${qty}</span>
+            <button onclick="updateCartItem(${id}, 'increase')">+</button>
+          </div>
+          <div class="price-remove-btn">
+          <!-- Remove Button -->
+          <button class="text-gray-500 text-lg" onclick="updateCartItem(${id}, 'remove')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <!-- Item Price -->
+          <h3 class="font-bold text-Red text-xl">${(price * qty).toFixed(
+            2
+          )} EGP</h3>
+
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+// function to update the cart (Increase, Decrease, Remove)
+function updateCartItem(itemId, action) {
+  const itemIndex = user.cart.findIndex(({ id }) => id === itemId);
+
+  if (itemIndex !== -1) {
+    // if item is founded
+    if (action === "increase") {
+      user.cart[itemIndex].qty += 1;
+    } else if (action === "decrease") {
+      if (user.cart[itemIndex].qty > 1) {
+        user.cart[itemIndex].qty -= 1;
+      } else {
+        user.cart.splice(itemIndex, 1);
+      }
+    } else if (action === "remove") {
+      user.cart.splice(itemIndex, 1);
+    }
+  }
+
+  // update localStorage and re-render cart
+  localStorage.setItem("USER", JSON.stringify(user));
+  renderCartItems();
+  renderOrdredItems();
+}
+
+function renderOrdredItems() {
+  const cartItemsContainer = document.getElementById("ordered-cart-items");
+  const cartTotalElement = document.getElementById("cart-total");
+
+  if (!cartItemsContainer) return;
+
+  if (!user.cart.length) {
+    cartItemsContainer.innerHTML = `<p class="text-center text-gray-500">Your cart is empty.</p>`;
+    cartTotalElement.innerText = "0";
+    return;
+  }
+
+  let total = 0;
+  cartItemsContainer.innerHTML = user.cart
+    .map(({ name, qty, price }) => {
+      total += price * qty;
+      return `
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="font-medium">${name}</h3>
+            <p class="text-sm text-Brown">${price} EGP <small class="text-black"> X${qty}</small></p>
+          </div>
+          <h3 class="font-bold text-Brown">${(
+            price * qty
+          ).toLocaleString()} EGP</h3>
+        </div>
+      `;
+    })
+    .join("");
+
+  cartTotalElement.innerText = total.toLocaleString();
+}
