@@ -3,6 +3,51 @@ let accounts = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
 localStorage.setItem("USER", JSON.stringify(user));
 localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
 
+// check its is in list fav||cart
+function isInList(payload, type) {
+  if (!user.name) return null;
+  const item = user[type].find(({ id }) => id == payload.id);
+  return item ? (type === "cart" ? item.qty : true) : false;
+}
+// function to return card products with add cart,fav,item detail
+function generateItems(container, arr) {
+  container.innerHTML =
+    arr.length === 0
+      ? `<div class="h-dvh col-span-4 text-4xl text-center text-Brown">No items found</div>`
+      : arr
+          .map((payload) => {
+            // update btn text on re-render
+            const isFavorite = isInList(payload, "favorite");
+            const cartQty = isInList(payload, "cart");
+
+            return `
+        <div class="item-card">
+          <img src="${payload.img}" alt="${payload.name}">
+          <div class="w-full text-center space-y-4">
+            <h1 class="text-Brown">${payload.name}</h1>
+            <h2 class="text-red-700">${payload.price} EGP</h2>
+            <div id="action-btns">
+              <button class="fav-btn bg-white" 
+                onclick='itemActions(${JSON.stringify(
+                  payload
+                )}, "favorite", this)'>
+                ${
+                  isFavorite
+                    ? `<i class="fa-solid fa-heart" style="color: #fa0000;"></i>`
+                    : `<i class="fa-regular fa-heart"></i>`
+                }
+              </button>
+              <button class="cart-btn bg-Orange w-full text-white hover:bg-Brown" 
+                onclick='itemActions(${JSON.stringify(payload)}, "cart", this)'>
+                ${cartQty ? `Added (${cartQty})` : "Add to cart"}
+              </button>
+            </div>
+          </div>
+        </div>
+        `;
+          })
+          .join("");
+}
 // add to cart and fav handler
 function itemActions(payload, type, button) {
   if (!user.name) {
@@ -30,6 +75,7 @@ function itemActions(payload, type, button) {
       user.favorite.push(payload);
       btnText = `<i class="fa-solid fa-heart" style="color: #fa0000;"></i>`;
     }
+    favoriteItems(); //update the fav page when clicking on action btns
   }
 
   // update local storage
@@ -44,6 +90,13 @@ function itemActions(payload, type, button) {
 
   // update button text immediately
   button.innerHTML = btnText;
+}
+
+// favorites items in page
+function favoriteItems() {
+  const favContainer = document.querySelector("#favorite-container");
+  if (!favContainer) return;
+  generateItems(favContainer, user.name ? user.favorite : []);
 }
 
 // logout Handler
@@ -69,6 +122,7 @@ function checkout() {
   user.cart = [];
   localStorage.setItem("USER", JSON.stringify(user));
   renderOrdredItems();
+  renderCartItems();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -122,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // display the first category by default
       selectedCat = data[7];
       applyFilters();
+      favoriteItems();
     } catch (error) {
       console.error("Error fetching the API:", error);
     }
@@ -149,54 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const filteredItems = selectedCat.categoryItems.filter((item) =>
       item.name.toLowerCase().includes(searchTitle)
     );
-    renderSelectedItems(filteredItems);
-  }
-
-  function isInList(payload, type) {
-    if (!user.name) return null;
-    const item = user[type].find(({ id }) => id == payload.id);
-    return item ? (type === "cart" ? item.qty : true) : false;
-  }
-
-  function renderSelectedItems(categoryItems) {
     const menuContainer = document.querySelector("#menu-container");
 
-    menuContainer.innerHTML =
-      categoryItems.length === 0
-        ? `<div class="h-dvh col-span-4 text-4xl text-center text-Brown">No items found</div>`
-        : categoryItems
-            .map((payload) => {
-              // update btn text on re-render
-              const isFavorite = isInList(payload, "favorite");
-              const cartQty = isInList(payload, "cart");
-
-              return `
-        <div class="item-card">
-          <img src="${payload.img}" alt="${payload.name}">
-          <div class="w-full text-center space-y-4">
-            <h1 class="text-Brown">${payload.name}</h1>
-            <h2 class="text-red-700">${payload.price} EGP</h2>
-            <div id="action-btns">
-              <button class="fav-btn bg-white" 
-                onclick='itemActions(${JSON.stringify(
-                  payload
-                )}, "favorite", this)'>
-                ${
-                  isFavorite
-                    ? `<i class="fa-solid fa-heart" style="color: #fa0000;"></i>`
-                    : `<i class="fa-regular fa-heart"></i>`
-                }
-              </button>
-              <button class="cart-btn bg-Orange w-full text-white hover:bg-Brown" 
-                onclick='itemActions(${JSON.stringify(payload)}, "cart", this)'>
-                ${cartQty ? `Added (${cartQty})` : "Add to cart"}
-              </button>
-            </div>
-          </div>
-        </div>
-        `;
-            })
-            .join("");
+    generateItems(menuContainer, filteredItems);
   }
 
   // sign-in and sign-up Authentication
@@ -384,4 +394,5 @@ function renderOrdredItems() {
     .join("");
 
   cartTotalElement.innerText = total.toLocaleString();
+  favoriteItems();
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>favorites</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header
+      class="sticky z-50 bg-white w-full backdrop-blur-2xl top-0 py-4 shadow-md"
+    >
+      <nav class="flex items-center justify-between layout-container">
+        <a href="/">
+          <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
+        </a>
+        <!-- navigation links  -->
+        <div class="flex items-center space-x-6">
+          <ul class="navlinks-menu">
+            <li>
+              <a class="nav-link" href="../pages/menu.html">menu</a>
+            </li>
+            <li>
+              <a class="nav-link" href="../pages/profile.html">my profile</a>
+            </li>
+            <li><a class="nav-link" href="../pages/about.html">about us</a></li>
+            <li>
+              <a class="nav-link" href="../pages/contact.html">get in touch</a>
+            </li>
+            <li>
+              <a class="nav-link" href="../pages/favorite.html">Favorite</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div
+      class="min-h-dvh grid grid-cols-3 layout-container gap-24"
+      id="favorite-container"
+    ></div>
+
+    <!-- footer -->
+    <footer class="bg-white py-4">
+      <div class="layout-container flex justify-between items-center">
+        <div class="flex gap-20 items-center text-Brown">
+          <a href="/">
+            <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
+          </a>
+          <a href="../pages/menu.html">OUR MENU</a>
+        </div>
+
+        <!-- social media links -->
+        <div
+          class="flex gap-6 items-center [&_a]:text-3xl [&_a:hover]:text-Brown [&_a]:text-Orange"
+        >
+          <h1 class="font-bold text-Brown">FOLLOW US</h1>
+          <a target="_blank" href="https://www.facebook.com/">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a target="_blank" href="https://www.instagram.com/">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a target="_blank" href="https://www.tiktok.com/">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a target="_blank" href="https://www.reddit.com/">
+            <i class="fa-brands fa-reddit-alien"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <div id="toast">acount created sucessfully</div>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
