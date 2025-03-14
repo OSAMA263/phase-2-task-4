@@ -1,9 +1,68 @@
+let user = JSON.parse(localStorage.getItem("USER")) || {};
+let accounts = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
+localStorage.setItem("USER", JSON.stringify(user));
+localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
+
+// add to cart and fav handler
+function itemActions(payload, type, button) {
+  if (!user.name) {
+    toastPopup("You need to log in");
+    return;
+  }
+  let btnText = "";
+  // check if the item does already exists
+  const item = user[type].find(({ id }) => id === payload.id);
+
+  if (type === "cart") {
+    if (item) {
+      item.qty += 1;
+      toastPopup(`${payload.name} quantity increased in cart!`);
+    } else {
+      user.cart.push({ ...payload, qty: 1 });
+      toastPopup(`${payload.name} added to cart!`);
+    }
+    btnText = `Added (${item?.qty || 1})`;
+  } else if (type === "favorite") {
+    if (item) {
+      user.favorite = user.favorite.filter(({ id }) => id !== payload.id);
+      btnText = `<i class="fa-regular fa-heart"></i>`;
+    } else {
+      user.favorite.push(payload);
+      btnText = `<i class="fa-solid fa-heart" style="color: #fa0000;"></i>`;
+    }
+  }
+
+  // update local storage
+  localStorage.setItem("USER", JSON.stringify(user));
+
+  // update user in accounts array
+  let authIndex = accounts.findIndex((acc) => acc.email === user.email);
+  if (authIndex !== -1) {
+    accounts[authIndex] = user;
+    localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
+  }
+
+  // update button text immediately
+  button.innerHTML = btnText;
+}
+
+function toastPopup(text) {
+  const toast = document.getElementById("toast");
+  toast.innerHTML = text;
+  toast.style.transform = "translate(-50%,-100%)";
+  setTimeout(() => {
+    toast.style.transform = "translate(-50%,100%)";
+    setTimeout(() => {
+      text == "account created successfully" && window.location.reload();
+    }, 500);
+  }, 1500);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const currUrl = location.pathname.split("/").pop();
   const API = "https://cdn.getsolo.io/apps/production/cQhyxA8MVeI-menu-30.json";
   const navLinks = document.querySelectorAll(".nav-link");
   const categoryBtns = document.querySelectorAll(".category-btn");
-  const menuContainer = document.querySelector("#menu-container");
   const searchInp = document.querySelector("#search-inp");
 
   // ative nav link highlighting
@@ -27,10 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(API);
       const apiData = await response.json();
+
       data = apiData.data.map((list) => ({
         category: list.attributes.category.name["en-us"],
         categoryImg: list.attributes.category["image-uri"],
         categoryItems: list.attributes.items.map((item) => ({
+          id: item.id,
           name: item.name["en-us"],
           price: item.price,
           img: item["image-uri"],
@@ -74,44 +135,57 @@ document.addEventListener("DOMContentLoaded", () => {
     renderSelectedItems(filteredItems);
   }
 
+  function isInList(payload, type) {
+    if (!user.name) return null;
+    const item = user[type].find(({ id }) => id == payload.id);
+    return item ? (type === "cart" ? item.qty : true) : false;
+  }
+
   function renderSelectedItems(categoryItems) {
+    const menuContainer = document.querySelector("#menu-container");
+
     menuContainer.innerHTML =
       categoryItems.length === 0
         ? `<div class="h-dvh col-span-4 text-4xl text-center text-Brown">No items found</div>`
         : categoryItems
-            .map(
-              ({ img, price, name }) => `
+            .map((payload) => {
+              // update btn text on re-render
+              const isFavorite = isInList(payload, "favorite");
+              const cartQty = isInList(payload, "cart");
+
+              return `
         <div class="item-card">
-          <img src="${img}" alt="${name}">
+          <img src="${payload.img}" alt="${payload.name}">
           <div class="w-full text-center space-y-4">
-            <h1 class="text-Brown">${name}</h1>
-            <h2 class="text-red-700">${price} EGP</h2>
+            <h1 class="text-Brown">${payload.name}</h1>
+            <h2 class="text-red-700">${payload.price} EGP</h2>
             <div id="action-btns">
-              <button class="bg-white">fav</button>
-              <button class="bg-Orange w-full text-white hover:bg-Brown">
-                Add to cart
+              <button class="fav-btn bg-white" 
+                onclick='itemActions(${JSON.stringify(
+                  payload
+                )}, "favorite", this)'>
+                ${
+                  isFavorite
+                    ? `<i class="fa-solid fa-heart" style="color: #fa0000;"></i>`
+                    : `<i class="fa-regular fa-heart"></i>`
+                }
+              </button>
+              <button class="cart-btn bg-Orange w-full text-white hover:bg-Brown" 
+                onclick='itemActions(${JSON.stringify(payload)}, "cart", this)'>
+                ${cartQty ? `Added (${cartQty})` : "Add to cart"}
               </button>
             </div>
           </div>
         </div>
-      `
-            )
+        `;
+            })
             .join("");
   }
 
   // sign-in and sign-up Authentication
   const linkTo = document.querySelectorAll(".link");
-  const login = document.getElementById("login");
-  const rejister = document.getElementById("rejister");
   const showPassword = document.querySelectorAll(".toggle-password");
   const forms = document.querySelectorAll("form");
-  const toast = document.getElementById("toast");
-
-  let user = JSON.parse(localStorage.getItem("USER")) || {};
-  localStorage.setItem("USER", JSON.stringify(user));
-
-  let accounts = JSON.parse(localStorage.getItem("ACCOUNTS")) || [];
-  localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
 
   // show password toggle
   showPassword.forEach((btn) => {
@@ -130,9 +204,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 
-  // sitching between login and registration
+  // switching between login and registration
   linkTo.forEach((link) => {
     link.onclick = (e) => {
+      const login = document.getElementById("login");
+      const rejister = document.getElementById("rejister");
       login.style.display = e.target.value === "login" ? "block" : "none";
       rejister.style.display = e.target.value === "rejister" ? "block" : "none";
     };
@@ -142,12 +218,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
     let data = {};
     formData.forEach((val, key) => {
-      data = { ...data, [key]: val };
+      data = { ...data, [key]: val, cart: [], favorite: [] };
     });
     return data;
   }
 
-  //handle form submission
+  //handle form submit
   forms.forEach((form) => {
     form.onsubmit = (e) => {
       e.preventDefault();
@@ -168,7 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (form.closest("#login")) {
         if (existingAccount.password === data.password) {
           localStorage.setItem("USER", JSON.stringify(existingAccount));
-          getUser(existingAccount);
           window.location.href = "profile.html";
         } else {
           loginPassword.innerHTML = "Incorrect password!";
@@ -184,13 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
         accounts.push(data);
         localStorage.setItem("ACCOUNTS", JSON.stringify(accounts));
         form.reset();
-        toast.style.transform = "translate(-50%,-100%)";
-        setTimeout(() => {
-          toast.style.transform = "translate(-50%,100%)";
-          setTimeout(() => {
-            window.location.reload();
-          }, 500);
-        }, 2500);
+        toastPopup("account created successfully");
       }
     }
   }
@@ -198,10 +267,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // logout Handler
   function logout() {
     localStorage.setItem("USER", JSON.stringify({}));
-  }
-
-  // ✅ Placeholder function for setting user data
-  function getUser(user) {
-    console.log("User logged in:", user);
   }
 });

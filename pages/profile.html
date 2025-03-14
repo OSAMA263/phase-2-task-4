@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>menu</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header
+      class="sticky z-50 bg-white w-full backdrop-blur-2xl top-0 py-4 shadow-md"
+    >
+      <nav class="flex items-center justify-between layout-container">
+        <a href="/">
+          <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
+        </a>
+        <!-- navigation links  -->
+        <div class="flex items-center space-x-6">
+          <ul class="navlinks-menu">
+            <li>
+              <a class="nav-link" href="../pages/menu.html">menu</a>
+            </li>
+            <li>
+              <a class="nav-link" href="../pages/profile.html">my profile</a>
+            </li>
+            <li><a class="nav-link" href="../pages/about.html">about us</a></li>
+            <li>
+              <a class="nav-link" href="../pages/contact.html">get in touch</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Section (Cart) -->
+        <div class="relative bg-white shadow-xl p-4 rounded-full">
+          <i class="fa-solid fa-bag-shopping text-Orange text-2xl"></i>
+          <span class="notification">4</span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="bg-light-brown min-h-dvh">
+      <div class="layout-container py-10 space-y-20">
+        <h1 id="welcoming" class="text-center text-Brown">asda</h1>
+
+        <!-- ordered items -->
+        <div class="grid grid-cols-2 gap-20 relative">
+          <div class="sticky top-32 h-fit">
+            <h1 class="underline w-fit">Cart Total</h1>
+            <div
+              class="p-8 space-y-3 [&_div]:flex [&_div]:justify-between bg-white"
+            >
+              <div class="mb-5 text-2xl font-bold">
+                <h1>Product</h1>
+                <h1>Total</h1>
+              </div>
+              {/* products names and prices */} {auth.cart.map(({ title, QTY,
+              price }) => (
+              <div class="text-sm" key="{title}">
+                <h1 class="font-medium capitalize text-lightGray">
+                  {title}
+                  <small class="font-bold text-black"> x{QTY}</small>
+                </h1>
+                <h1 class="font-medium">
+                  ${Math.floor(price * QTY).toLocaleString("en")}
+                </h1>
+              </div>
+              ))}
+              <div class="text-xl font-bold">
+                <h1>Grand Total</h1>
+                <h1>${TOTAL}</h1>
+              </div>
+            </div>
+          </div>
+
+          <!-- cart -->
+          <div class="border border-black h-[400vh]">
+            <h1 class="text-center">Your Cart</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-white py-4">
+      <div class="layout-container flex justify-between items-center">
+        <div class="flex gap-20 items-center text-Brown">
+          <a href="/">
+            <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
+          </a>
+          <a href="../pages/menu.html">OUR MENU</a>
+        </div>
+
+        <!-- social media links -->
+        <div
+          class="flex gap-6 items-center [&_a]:text-3xl [&_a:hover]:text-Brown [&_a]:text-Orange"
+        >
+          <h1 class="font-bold text-Brown">FOLLOW US</h1>
+          <a target="_blank" href="https://www.facebook.com/">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a target="_blank" href="https://www.instagram.com/">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a target="_blank" href="https://www.tiktok.com/">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a target="_blank" href="https://www.reddit.com/">
+            <i class="fa-brands fa-reddit-alien"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../app.js"></script>
+  </body>
+</html>

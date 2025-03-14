@@ -77,7 +77,7 @@ body {
       @apply text-Red;
     }
     #action-btns {
-      @apply flex gap-4 w-full *:p-2 *:rounded-full [&_button:last-child:hover]:bg-Brown;
+      @apply flex gap-4 w-full *:p-2 *:px-3 *:rounded-full [&_button:last-child:hover]:bg-Brown;
     }
   }
 }
@@ -115,5 +115,5 @@ body {
   }
 }
 #toast {
-  @apply absolute bottom-0 right-0 bg-Brown !text-white p-4 translate-y-full -translate-x-1/2 rounded-md transition-all duration-500;
+  @apply fixed bottom-0 right-0 bg-Brown !text-white p-4 translate-y-full -translate-x-1/2 rounded-md transition-all duration-500;
 }
