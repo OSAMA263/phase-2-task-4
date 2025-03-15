@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", (e) => {
       if (linkFile === "profile.html" && !user.name) {
         e.preventDefault();
-        location.pathname = "/pages/sigin-siginUp.html";
+        location.pathname = "/phase-2-task-4/pages/sigin-siginUp.html";
       }
     });
   });
@@ -320,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", (e) => {
       if (!user.name) {
         e.preventDefault();
-        window.location.href = "/pages/sigin-siginUp.html";
+        window.location.href = "/phase-2-task-4/pages/sigin-siginUp.html";
       }
     });
   });
