@@ -36,7 +36,7 @@ body {
     @apply absolute -top-2 -right-2 bg-Red text-white text-xs rounded-full py-1 px-2;
   }
   .navlinks-menu {
-    @apply flex items-center space-x-6 font-semibold text-lg uppercase;
+    @apply transition-all max-md:top-14 max-md:absolute w-full max-md:py-2 max-md:-z-10 bg-white left-0 max-md:flex-col md:space-x-6 font-semibold text-lg uppercase flex items-center;
     a {
       @apply text-Brown border-b-2 border-transparent hover:text-Orange;
       &.active {
@@ -47,10 +47,10 @@ body {
 }
 /* home page */
 #explore-more {
-  @apply *:text-5xl *:uppercase;
+  @apply *:xl:text-5xl *:md:text-3xl *:text-xl *:uppercase;
   .row {
     a {
-      @apply p-20 flex flex-col gap-2 items-center justify-center text-light-brown hover:brightness-75;
+      @apply lg:p-20 p-10 flex flex-col gap-2 items-center justify-center text-light-brown hover:brightness-75;
       &.bg-light-brown {
         @apply !text-Brown;
       }
@@ -67,21 +67,20 @@ body {
   }
 }
 #menu-container {
-  @apply grid grid-cols-4 gap-x-10 gap-y-20 layout-container;
-  .item-card {
-    @apply flex flex-col gap-10 items-center font-bold;
-    img {
-      @apply w-full h-96 object-cover rounded-md;
-    }
-    h2 {
-      @apply text-Red;
-    }
-    #action-btns {
-      @apply flex gap-4 w-full *:p-2 *:px-3 *:rounded-full [&_button:last-child:hover]:bg-Brown;
-    }
+  @apply grid 2xl:grid-cols-4 md:grid-cols-2 gap-x-10 gap-y-20 layout-container;
+}
+.item-card {
+  @apply flex flex-col gap-10 items-center font-bold;
+  img {
+    @apply w-full h-96 object-cover rounded-md;
+  }
+  h2 {
+    @apply text-Red;
+  }
+  #action-btns {
+    @apply flex gap-4 w-full *:p-2 *:px-3 *:rounded-full [&_button:last-child:hover]:bg-Brown;
   }
 }
-
 /* sigin-in & sigin-up  */
 #sigin-signup {
   @apply flex relative max-w-3xl mx-auto items-center overflow-hidden justify-center h-dvh;
@@ -126,11 +125,11 @@ body {
   }
   .actions-wrapper {
     @apply rounded-full w-fit mx-auto flex gap-4;
-    button{
-      @apply rounded-full bg-Orange hover:bg-Brown px-2
+    button {
+      @apply rounded-full bg-Orange hover:bg-Brown px-2;
     }
   }
   .price-remove-btn {
-    @apply flex flex-col items-end
+    @apply flex flex-col items-end;
   }
 }

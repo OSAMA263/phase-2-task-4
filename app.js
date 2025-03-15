@@ -131,6 +131,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-link");
   const categoryBtns = document.querySelectorAll(".category-btn");
   const searchInp = document.querySelector("#search-inp");
+  const navlinksToggler = document.querySelector("#menu-toggle");
+  const navbarlinks = document.querySelector(".navlinks-menu");
+
+  function handleNavbarTransform() {
+    if (window.innerWidth > 768) {
+      navbarlinks.style.transform = "translateY(0%)";
+    } else {
+      navbarlinks.style.transform =
+        navbarlinks.style.transform === "translateY(-200%)"
+          ? "translateY(0)"
+          : "translateY(-200%)";
+    }
+  }
+  handleNavbarTransform();
+  // resize event listener for lg screens
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      handleNavbarTransform();
+    }
+  });
+
+  navlinksToggler.addEventListener("click", handleNavbarTransform);
 
   function welcoming() {
     if (window.location.href.split("/").pop() !== "profile.html") return null;
@@ -292,7 +314,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   renderCartItems();
   renderOrdredItems();
+
+  // if not logged in, redirect to sign-in/sign-up page when profile link is clicked
+  document.querySelectorAll('a[href="./pages/profile.html"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (!user.name) {
+        e.preventDefault();
+        window.location.href = "/pages/sigin-siginUp.html";
+      }
+    });
+  });
 });
+
 function renderCartItems() {
   const cartItemsContainer = document.getElementById("cart-items");
 

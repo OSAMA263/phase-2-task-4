@@ -23,6 +23,10 @@
         <a href="/">
           <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
         </a>
+        <!-- toggle navmenu btn -->
+        <button id="menu-toggle" class="ml-auto md:hidden text-3xl">
+          <i class="fa-solid fa-bars"></i>
+        </button>
         <!-- navigation links  -->
         <div class="flex items-center space-x-6">
           <ul class="navlinks-menu">
@@ -41,8 +45,6 @@
             </li>
           </ul>
         </div>
-
-
       </nav>
     </header>
 
@@ -113,14 +115,14 @@
           <a href="/">
             <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
           </a>
-          <a href="../pages/menu.html">OUR MENU</a>
+          <a href="../pages/menu.html" class="max-md:hidden">OUR MENU</a>
         </div>
 
         <!-- social media links -->
         <div
           class="flex gap-6 items-center [&_a]:text-3xl [&_a:hover]:text-Brown [&_a]:text-Orange"
         >
-          <h1 class="font-bold text-Brown">FOLLOW US</h1>
+          <h1 class="font-bold text-Brown max-md:hidden">FOLLOW US</h1>
           <a target="_blank" href="https://www.facebook.com/">
             <i class="fa-brands fa-facebook"></i>
           </a>

@@ -23,6 +23,10 @@
         <a href="/">
           <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
         </a>
+        <!-- toggle navmenu btn -->
+        <button id="menu-toggle" class="ml-auto md:hidden text-3xl">
+          <i class="fa-solid fa-bars"></i>
+        </button>
         <!-- navigation links  -->
         <div class="flex items-center space-x-6">
           <ul class="navlinks-menu">
@@ -41,18 +45,13 @@
             </li>
           </ul>
         </div>
-
-
       </nav>
     </header>
-    
+
     <section class="pt-10 pb-16 px-6 max-w-5xl mx-auto text-center">
       <h1 class="text-5xl font-bold uppercase text-Brown">About Burger King</h1>
 
-      <img
-        src="../imgs/about.webp"
-        class="mt-8 rounded-lg shadow-lgl max-w-2xl mx-auto"
-      />
+      <img src="../imgs/about.webp" class="mt-8 rounded-lg shadow-lg mx-auto" />
       <p class="mt-4 text-lg text-gray-700">
         Since 1954, Burger King has been serving high-quality, flame-grilled
         burgers. Our mission is to provide delicious food with the best
@@ -87,7 +86,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- footer -->
     <footer class="bg-white py-4">
       <div class="layout-container flex justify-between items-center">
@@ -95,14 +94,14 @@
           <a href="/">
             <img src="../imgs/logo.png" alt="Burger King" class="w-12" />
           </a>
-          <a href="../pages/menu.html">OUR MENU</a>
+          <a href="../pages/menu.html" class="max-md:hidden">OUR MENU</a>
         </div>
 
         <!-- social media links -->
         <div
           class="flex gap-6 items-center [&_a]:text-3xl [&_a:hover]:text-Brown [&_a]:text-Orange"
         >
-          <h1 class="font-bold text-Brown">FOLLOW US</h1>
+          <h1 class="font-bold text-Brown max-md:hidden">FOLLOW US</h1>
           <a target="_blank" href="https://www.facebook.com/">
             <i class="fa-brands fa-facebook"></i>
           </a>
