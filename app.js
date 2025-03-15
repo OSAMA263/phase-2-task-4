@@ -102,7 +102,7 @@ function favoriteItems() {
 // logout Handler
 function logout() {
   localStorage.setItem("USER", JSON.stringify({}));
-  window.location.href = "/";
+  window.location.href = "/phase-2-task-4/";
 }
 
 function toastPopup(text) {
