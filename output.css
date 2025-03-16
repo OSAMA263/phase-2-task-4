@@ -704,10 +704,6 @@ video {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -1525,6 +1521,12 @@ body {
 @media not all and (min-width: 768px) {
   .max-md\:hidden {
     display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
